@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QRCodeReaver</string>
+    <string name="app_name_pretty">QR Code Reaver</string>
 </resources>

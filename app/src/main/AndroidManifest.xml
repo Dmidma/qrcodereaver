@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.qrcodereaver">
 
+
+    <!-- Only Phones with Camera can use this app -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_qr_reaver"
@@ -18,7 +28,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:label="@string/app_name_pretty">
 
         </activity>
 
