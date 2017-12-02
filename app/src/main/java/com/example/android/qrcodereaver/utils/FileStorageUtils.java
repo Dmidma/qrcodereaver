@@ -29,19 +29,17 @@ public class FileStorageUtils {
      * @param filename Must contain both prefix and suffix
      * @param type
      * @param dirType
-     * @param temp
      * @return
      */
-    public static File getFile(Context context, String filename, int type, String dirType, boolean temp) throws IOException {
+    public static File getFile(Context context, String filename, int type, String dirType) throws IOException {
         File storageDir = getCorrectDir(context, type, dirType);
+        File file = new File(storageDir, filename);
+        return file;
+    }
 
-        File file;
-        if (temp) {
-            String [] prefixSuffix = filename.split(".");
-            file = File.createTempFile(prefixSuffix[0], prefixSuffix[1], storageDir);
-        } else {
-            file = new File(storageDir, filename);
-        }
+    public static File getTempFile(Context context, String prefix, String suffix, int type, String dirType) throws IOException {
+        File storageDir = getCorrectDir(context, type, dirType);
+        File file = File.createTempFile(prefix, suffix, storageDir);
         return file;
     }
 
