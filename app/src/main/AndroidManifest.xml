@@ -10,7 +10,10 @@
 
 
     <!-- Permissions -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Writing to external private dir -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"/>
         
     <application
         android:allowBackup="true"

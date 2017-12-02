@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private FloatingActionButton mFABCameraButton;
 
+    // testing
     private ImageView mImageView;
 
     @Override
@@ -34,11 +35,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         // get the floating button and set its action
         mFABCameraButton = (FloatingActionButton) findViewById(R.id.fab_open_camera);
-        // change the FAB color
-        // mFABCameraButton.setBackgroundColor(Color.parseColor("@color/"));
         mFABCameraButton.setOnClickListener(this);
 
-
+        // testing
         mImageView = (ImageView) findViewById(R.id.iv_camera);
     }
 
@@ -67,8 +66,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // check that the result was from the CAMERA and the result is OK
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
+            // get thumbnail
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
         }
