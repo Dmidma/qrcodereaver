@@ -2,19 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.qrcodereaver">
 
-
     <!-- Only Phones with Camera can use this app -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
-
     <!-- Permissions -->
 
+
     <!-- Writing to external private dir -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18"/>
-        
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_qr_reaver"
@@ -22,19 +22,14 @@
         android:roundIcon="@drawable/logo_qr_reaver"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".HomeActivity"
-            android:label="@string/app_name_pretty">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
 
         </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name_pretty"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -46,7 +41,13 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <activity android:name=".TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

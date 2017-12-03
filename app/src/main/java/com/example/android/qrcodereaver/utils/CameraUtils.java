@@ -87,7 +87,6 @@ public class CameraUtils {
 
         try {
             File fifi = FileStorageUtils.getFile(mContext, "File.txt", FileStorageUtils.EXTERNAL_PRIVATE_DIR, Environment.DIRECTORY_PICTURES);
-            fifi.
         } catch (IOException ee) {
             ee.printStackTrace();
         }

@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.fab_open_camera:
                 mCamera = CameraUtils.getOneInstance(mContext);
                 startCamera(CameraUtils.REQUEST_TAKE_PHOTO);
+
                 return;
         }
     }
