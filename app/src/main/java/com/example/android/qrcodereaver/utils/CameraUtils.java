@@ -49,12 +49,6 @@ public class CameraUtils {
 
 
     public static final int REQUEST_CAMERA_THUMBNAIL = 1;
-    /*
-        Usage in Activity:
-        Intent takePictureIntent = CameraUtils.startCameraForThumbnail
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
-            startActivityForResult(takePictureIntent, CameraUtils.REQUEST_CAMERA_THUMBNAIL);
-     */
     public Intent startCameraForThumbnail() {
         return takePictureIntent;
     }

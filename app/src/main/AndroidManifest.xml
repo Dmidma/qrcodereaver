@@ -29,7 +29,13 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name_pretty"></activity>
+            android:label="@string/app_name_pretty">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -41,13 +47,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
