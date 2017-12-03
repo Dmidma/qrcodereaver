@@ -18,7 +18,7 @@ public class CameraUtils {
     private static Context mContext;
     private static Intent takePictureIntent;
 
-    private static final String FILE_PROVIDER_AUTHORITY = "";
+    private static final String FILE_PROVIDER_AUTHORITY = "com.example.android.qrcodereaver.fileprovider";
 
 
     private File mTmpFile;
@@ -79,6 +79,21 @@ public class CameraUtils {
         }
         return null;
     }
+    public Bitmap finishCameraForPhoto() {
+        Bitmap resultImage = BitmapUtils.resamplePic(mContext, mTmpFile.getAbsolutePath());
 
+
+        return resultImage;
+    }
+
+
+    private void deleteTmpFile() {
+        if (mTmpFile != null) {
+            boolean deleted = mTmpFile.delete();
+            if (!deleted) {
+                Toast.makeText(mContext, "Error Finding Image", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 }

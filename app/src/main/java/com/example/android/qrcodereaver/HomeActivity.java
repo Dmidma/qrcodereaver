@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.fab_open_camera:
                 mCamera = CameraUtils.getOneInstance(mContext);
-                startCamera(CameraUtils.REQUEST_CAMERA_THUMBNAIL);
+                startCamera(CameraUtils.REQUEST_TAKE_PHOTO);
                 return;
         }
     }
@@ -118,6 +118,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mImageView.setImageBitmap(mCamera.finishCameraForThumbnail(data));
                     return;
                 case CameraUtils.REQUEST_TAKE_PHOTO:
+                    Bitmap image = mCamera.finishCameraForPhoto();
+                    mImageView.setImageBitmap(image);
                     return;
             }
         }
