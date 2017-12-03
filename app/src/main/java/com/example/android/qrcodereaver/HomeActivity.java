@@ -3,6 +3,7 @@ package com.example.android.qrcodereaver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -24,6 +25,7 @@ import com.example.android.qrcodereaver.utils.FileStorageUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
@@ -42,6 +44,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextViewImagePath;
     private TextView mTextViewImageName;
     private CameraUtils mCamera;
+
+
+    // data
+    private RecordFile rf;
 
 
     @Override
@@ -63,6 +69,26 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mImageView = (ImageView) findViewById(R.id.iv_camera);
         mTextViewImagePath = (TextView) findViewById(R.id.tv_image_path);
         mTextViewImageName = (TextView) findViewById(R.id.tv_image_name);
+
+
+        // get record file
+        rf = new RecordFile(mContext);
+        if (!rf.checkFile()) {
+            Toast.makeText(mContext, "Unable to open record file", Toast.LENGTH_LONG).show();
+        }
+
+        try {
+            ArrayList<String> paths = rf.getPathsInFile();
+            if (paths.size() > 0) {
+
+                mImageView.setImageBitmap(BitmapFactory.decodeFile(paths.get(0)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "Unable to get paths", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
 
@@ -122,8 +148,28 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     mImageView.setImageBitmap(mCamera.finishCameraForThumbnail(data));
                     return;
                 case CameraUtils.REQUEST_TAKE_PHOTO:
-                    Bitmap image = mCamera.finishCameraForPhoto();
-                    mImageView.setImageBitmap(image);
+                    File tmpFile = mCamera.finishCameraForPhotoFile();
+
+                    // one time
+                    try {
+                        rf.emptyFile();
+                    } catch (IOException ee) {
+                        ee.printStackTrace();
+                    }
+
+
+                    rf.addPathToFile(tmpFile.getAbsolutePath());
+
+                    try {
+                        rf.setPathsToFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+                    mImageView.setImageBitmap(BitmapFactory.decodeFile(tmpFile.getAbsolutePath()));
                     return;
             }
         }

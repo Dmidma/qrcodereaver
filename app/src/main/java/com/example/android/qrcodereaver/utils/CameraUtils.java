@@ -75,16 +75,12 @@ public class CameraUtils {
         }
         return null;
     }
+    public File finishCameraForPhotoFile() {
+        return mTmpFile;
+    }
     public Bitmap finishCameraForPhoto() {
 
         Bitmap mimi = BitmapFactory.decodeFile(mTmpFile.getAbsolutePath());
-
-        try {
-            File fifi = FileStorageUtils.getFile(mContext, "File.txt", FileStorageUtils.EXTERNAL_PRIVATE_DIR, Environment.DIRECTORY_PICTURES);
-        } catch (IOException ee) {
-            ee.printStackTrace();
-        }
-
 
 
         /*
