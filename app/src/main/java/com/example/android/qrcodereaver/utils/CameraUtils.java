@@ -4,8 +4,10 @@ package com.example.android.qrcodereaver.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
@@ -80,10 +82,28 @@ public class CameraUtils {
         return null;
     }
     public Bitmap finishCameraForPhoto() {
+
+        Bitmap mimi = BitmapFactory.decodeFile(mTmpFile.getAbsolutePath());
+
+        try {
+            File fifi = FileStorageUtils.getFile(mContext, "File.txt", FileStorageUtils.EXTERNAL_PRIVATE_DIR, Environment.DIRECTORY_PICTURES);
+            fifi.
+        } catch (IOException ee) {
+            ee.printStackTrace();
+        }
+
+
+
+        /*
         Bitmap resultImage = BitmapUtils.resamplePic(mContext, mTmpFile.getAbsolutePath());
 
-
-        return resultImage;
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mTmpFile.getAbsolutePath());
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        mContext.sendBroadcast(mediaScanIntent);
+        */
+        return mimi;
     }
 
 

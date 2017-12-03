@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // get the floating button and set its action
         mFABCameraButton = (FloatingActionButton) findViewById(R.id.fab_open_camera);
         mFABCameraButton.setOnClickListener(this);
+
+        ((Button) findViewById(R.id.bt_test)).setOnClickListener(this);
 
         // testing
         mImageView = (ImageView) findViewById(R.id.iv_camera);
